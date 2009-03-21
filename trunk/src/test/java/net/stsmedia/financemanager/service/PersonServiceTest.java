@@ -1,0 +1,94 @@
+package net.stsmedia.financemanager.service;
+
+import static org.junit.Assert.assertEquals;
+import net.stsmedia.financemanager.domain.Address;
+import net.stsmedia.financemanager.domain.Person;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * A simple integration test for PersonService.
+ * 
+ * @author Stefan Schmidt
+ *
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+@TransactionConfiguration(transactionManager = "transactionManager")
+@ContextConfiguration(locations = { "classpath:applicationContext-infrastructure.xml" })
+public class PersonServiceTest{
+	
+	@Autowired
+	private PersonService personService;
+	
+	@Test
+	@Rollback
+	public void testPersist(){		
+		Person homer = generatePerson();		
+		personService.persist(homer);
+		assertEquals("Homer", personService.find(homer.getId()).getFirstName());
+	}
+	
+	@Test
+	@Rollback
+	public void testUpdate(){		
+		Person person = generatePerson();		
+		personService.persist(person);
+		person.setFirstName("Marge");
+		personService.merge(person);
+		assertEquals("Marge", personService.find(person.getId()).getFirstName());
+	}
+	
+	@Test
+	@Rollback
+	public void testDelete(){		
+		Person homer = generatePerson();		
+		personService.persist(homer);
+		personService.remove(homer);	
+		assertEquals(0l, personService.findAll().size());
+	}
+	
+	@Test
+	@Rollback
+	public void testRead(){		
+		Person homer = generatePerson();		
+		personService.persist(homer);
+		Person result = personService.find(homer.getId());
+		assertEquals("Homer", result.getFirstName());
+		assertEquals("Simpson", result.getLastName());
+		assertEquals("homer@simpsons.com", result.getEmail());
+		assertEquals("Evergreen Terrace", result.getAddress().getStreetName());
+		assertEquals("99a", result.getAddress().getStreetNumber());
+		assertEquals("Springfield", result.getAddress().getCity());
+		assertEquals("57657", result.getAddress().getZipCode());
+		assertEquals("Ohio", result.getAddress().getState());
+		assertEquals("USA", result.getAddress().getCountry());
+	}
+	
+	@Test
+	@Rollback
+	public void testFindByLastName(){
+		personService.persist(generatePerson());
+		assertEquals("Homer", personService.findByLastName("Simpson").get(0).getFirstName());
+	}
+	
+	private Person generatePerson(){
+		Person person = new Person();
+		person.setFirstName("Homer");
+		person.setLastName("Simpson");
+		person.setEmail("homer@simpsons.com");
+		person.setAddress(generateAddress());
+		return person;
+	}
+	
+	private Address generateAddress(){
+		return new Address("Evergreen Terrace", "99a", "Springfield", "57657", "Ohio", "USA");
+	}
+}
