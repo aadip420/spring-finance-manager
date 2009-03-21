@@ -152,16 +152,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.aop</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
@@ -221,9 +211,6 @@
 			<version>1.8.0.9</version>
 		</dependency>
 	</dependencies>
-	<scm>
-		<developerConnection>Stefan Schmidt</developerConnection>
-	</scm>
 
 	<build>
 		<plugins>
@@ -307,4 +294,8 @@
 			</plugin>
 		</plugins>
 	</build>
+	<properties>
+		<spring.version>3.0.0.M2</spring.version>
+		<aspectj.version>1.6.3.RELEASE</aspectj.version>
+	</properties>
 </project>
