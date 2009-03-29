@@ -1,5 +1,9 @@
 package net.stsmedia.financemanager.web.mvc;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 import net.stsmedia.financemanager.domain.Person;
 import net.stsmedia.financemanager.service.PersonService;
 
@@ -7,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +30,8 @@ public class PersonController {
 
 	@Autowired
 	private PersonService personService;
+	
+	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	@RequestMapping(value = "person/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Long id, ModelMap modelMap) {
@@ -53,8 +60,12 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "person", method = RequestMethod.POST)
-	public String create(@ModelAttribute("person") Person person) {
+	public String create(@ModelAttribute("person") Person person, BindingResult result) {
 		Assert.notNull(person, "Person must be provided.");
+		for(ConstraintViolation<Person> constraint: validator.validate(person)){
+			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+		}
+		if(result.hasErrors()) return "person/create";
 		personService.persist(person);
 		return "redirect:/person/" + person.getId();
 	}
@@ -67,8 +78,12 @@ public class PersonController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public String update(@ModelAttribute("person") Person person) {
+	public String update(@ModelAttribute("person") Person person, BindingResult result) {
 		Assert.notNull(person, "Person must be provided.");
+		for(ConstraintViolation<Person> constraint: validator.validate(person)){
+			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+		}
+		if(result.hasErrors()) return "person/update";
 		personService.merge(person);
 		return "redirect:/person/" + person.getId();
 	}	

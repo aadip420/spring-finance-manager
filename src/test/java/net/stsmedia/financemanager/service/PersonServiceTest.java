@@ -1,6 +1,11 @@
 package net.stsmedia.financemanager.service;
 
 import static org.junit.Assert.assertEquals;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 import net.stsmedia.financemanager.domain.Address;
 import net.stsmedia.financemanager.domain.Person;
 
@@ -28,10 +33,13 @@ public class PersonServiceTest{
 	@Autowired
 	private PersonService personService;
 	
+	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	
 	@Test
 	@Rollback
 	public void testPersist(){		
-		Person homer = generatePerson();		
+		Person homer = generatePerson();	
+		homer.setEmail(null);
 		personService.persist(homer);
 		assertEquals("Homer", personService.find(homer.getId()).getFirstName());
 	}
@@ -77,6 +85,16 @@ public class PersonServiceTest{
 	public void testFindByLastName(){
 		personService.persist(generatePerson());
 		assertEquals("Homer", personService.findByLastName("Simpson").get(0).getFirstName());
+	}
+	
+	@Test
+	@Rollback
+	public void testValidation(){
+		Person homer = generatePerson();
+		homer.setEmail("");
+		ConstraintViolation<Person> constraint = validator.validate(homer).iterator().next();
+		assertEquals("Email invalid", constraint.getMessage());
+		assertEquals("email", constraint.getPropertyPath());		
 	}
 	
 	private Person generatePerson(){

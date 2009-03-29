@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.NotNull;
 import org.springframework.core.style.ToStringCreator;
 
 /**
@@ -30,14 +32,19 @@ public class Person {
 	private Integer version;
 
 	@NotNull
+	@Pattern(regexp="[a-zA-Z0-9]+", message="Last name must not be empty!")
 	private String lastName;
 
 	@NotNull
+	@Pattern(regexp="[a-zA-Z0-9]+", message="First name must not be empty!")
 	private String firstName;
 
 	@NotNull
+	@Pattern(message="Email invalid", regexp="[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
 	private String email;
-
+	
+	@Valid
+	@NotNull
 	@Embedded
 	private Address address;
 	
