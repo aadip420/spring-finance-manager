@@ -1,8 +1,10 @@
 package net.stsmedia.financemanager.domain;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.NotNull;
+import org.hibernate.validation.constraints.NotEmpty;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.util.Assert;
 
@@ -17,15 +19,19 @@ import org.springframework.util.Assert;
 public class Address {
 
 	@NotNull
+	@Pattern(regexp="[a-zA-Z0-9]+", message="Street name must not be empty!")
 	private String streetName;
 	
 	@NotNull
+	@Pattern(regexp="[a-zA-Z0-9]+", message="Street number must not be empty!")
 	private String streetNumber;
 	
 	@NotNull
+	@Pattern(regexp="[a-zA-Z0-9]+", message="City must not be empty!")
 	private String city;
 	
 	@NotNull
+	@Pattern(regexp="[a-zA-Z0-9]+", message="Zip code must not be empty!")
 	private String zipCode;
 	
 	private String state;
