@@ -4,44 +4,46 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validation.constraints.NotEmpty;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.util.Assert;
 
 /**
- * An example for an JPA embeddable class. Ideally this class should be
- * treated as a value object as documented in Evan's book p. 97
+ * An example for an JPA embeddable class. Ideally this class should be treated
+ * as a value object as documented in Evan's book p. 97
  * 
  * @author Stefan Schmidt
- *
+ * @since 0.1
+ * 
  */
 @Embeddable
 public class Address {
 
 	@NotNull
-	@Pattern(regexp="[a-zA-Z0-9]+", message="Street name must not be empty!")
+	@Pattern(regexp = ".+", message = "Street name must not be empty!")
 	private String streetName;
-	
+
 	@NotNull
-	@Pattern(regexp="[a-zA-Z0-9]+", message="Street number must not be empty!")
+	@Pattern(regexp = ".+", message = "Street number must not be empty!")
 	private String streetNumber;
-	
+
 	@NotNull
-	@Pattern(regexp="[a-zA-Z0-9]+", message="City must not be empty!")
+	@Pattern(regexp = ".+", message = "City must not be empty!")
 	private String city;
-	
+
 	@NotNull
-	@Pattern(regexp="[a-zA-Z0-9]+", message="Zip code must not be empty!")
+	@Pattern(regexp = ".+", message = "Zip code must not be empty!")
 	private String zipCode;
-	
+
 	private String state;
-	
+
 	private String country;
-	
-	//this object should be treated as VO and therefore this constructor is just to be 
-	//used by the ORM
-	protected Address(){}
-	
+
+	// this object should be treated as VO and therefore this constructor is
+	// just to be
+	// used by the ORM
+	protected Address() {
+	}
+
 	public Address(String streetName, String streetNumber, String city, String zipCode) {
 		Assert.hasText(streetName, "Street name required.");
 		Assert.hasText(streetNumber, "Street number required.");
@@ -114,17 +116,17 @@ public class Address {
 
 	public String getCountry() {
 		return country;
-	}	
-	
+	}
+
 	public String toString() {
 		ToStringCreator tsc = new ToStringCreator(this);
 		tsc.append("Street Name: " + getStreetName());
 		tsc.append("Street Number: ", getStreetNumber());
 		tsc.append("City: ", getCity());
 		tsc.append("Zip Code: ", getZipCode());
-		if(getState()!=null)
+		if (getState() != null)
 			tsc.append("State: ", getState());
-		if(getCountry()!=null)
+		if (getCountry() != null)
 			tsc.append("Country: ", getCountry());
 		return tsc.toString();
 	}

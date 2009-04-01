@@ -11,17 +11,16 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.springframework.core.style.ToStringCreator;
-
 /**
  * A JPA entity for the person domain object.
  * 
  * @author Stefan Schmidt
- *
+ * @since 0.1
+ * 
  */
 @Entity
 public class Person {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -32,23 +31,23 @@ public class Person {
 	private Integer version;
 
 	@NotNull
-	@Pattern(regexp="[a-zA-Z0-9]+", message="Last name must not be empty!")
+	@Pattern(regexp = ".+", message = "Last name must not be empty!")
 	private String lastName;
 
 	@NotNull
-	@Pattern(regexp="[a-zA-Z0-9]+", message="First name must not be empty!")
+	@Pattern(regexp = ".+", message = "First name must not be empty!")
 	private String firstName;
 
 	@NotNull
-	@Pattern(message="Email invalid", regexp="[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+	@Pattern(message = "Email invalid", regexp = "[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
 	private String email;
-	
+
 	@Valid
 	@NotNull
 	@Embedded
 	private Address address;
-	
-	public Person(){
+
+	public Person() {
 		address = new Address();
 	}
 
@@ -90,7 +89,7 @@ public class Person {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}	
+	}
 
 	public Address getAddress() {
 		return address;
@@ -98,14 +97,14 @@ public class Person {
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}	
+	}
 
 	public String toString() {
-		ToStringCreator tsc = new ToStringCreator(this);
-		tsc.append("LastName: " + getLastName());
-		tsc.append("FirstName: " + getFirstName());
-		tsc.append("Email: " + getEmail());
-		tsc.append("Address: " + getAddress());
-		return tsc.toString();
+		StringBuilder string = new StringBuilder();
+		string.append(getFirstName()).append(" ");
+		string.append(getLastName()).append(", ");
+		string.append(getAddress().getCity()).append(", ");
+		string.append(getEmail());
+		return string.toString();
 	}
 }
