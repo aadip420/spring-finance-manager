@@ -11,10 +11,8 @@
   
   <script djconfig="parseOnLoad: true" src="<c:url value="/resources/dojo/dojo.js"/>" type="text/javascript"></script>
   <script type="text/javascript" src="<c:url value="/resources/spring/Spring.js" />"> </script>
-  <script type="text/javascript" src="<c:url value="/resources/spring/Spring-Dojo.js" />"> </script>	 
-	<script type="text/javascript">
-	dojo.require("dojo.parser");
-  </script>
+  <script type="text/javascript" src="<c:url value="/resources/spring/Spring-Dojo.js" />"> </script>	
+  <script type="text/javascript">dojo.require("dojo.parser");</script>
   <title>Spring Finance</title>	
  
 </head>
