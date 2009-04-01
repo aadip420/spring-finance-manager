@@ -8,16 +8,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * This class provides a generic default implementation for many
- * functionalities used in persistence mechanisms. It offers standard 
- * CRUD functions for JPA applications plus count() and findInRange() 
- * functions as they are frequently used in Web applications. 
+ * This class provides a generic default implementation for many functionalities
+ * used in persistence mechanisms. It offers standard CRUD functions for JPA
+ * applications plus count() and findInRange() functions as they are frequently
+ * used in Web applications.
  * 
  * 
  * @author Stefan Schmidt
- *
- * @param <T> the type to be persisted (i.e. Person.class)
- * @param <ID> the identifier type
+ * @since 0.1
+ * 
+ * @param <T>
+ *            the type to be persisted (i.e. Person.class)
+ * @param <ID>
+ *            the identifier type
  */
 public abstract class GenericDAOWithJPA<T, ID extends Serializable> {
 

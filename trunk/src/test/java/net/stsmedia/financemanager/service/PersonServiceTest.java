@@ -1,12 +1,6 @@
 package net.stsmedia.financemanager.service;
 
 import static org.junit.Assert.assertEquals;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-
-import net.stsmedia.financemanager.domain.Address;
 import net.stsmedia.financemanager.domain.Person;
 
 import org.junit.Test;
@@ -22,51 +16,50 @@ import org.springframework.transaction.annotation.Transactional;
  * A simple integration test for PersonService.
  * 
  * @author Stefan Schmidt
- *
+ * @since 0.1
+ * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager")
 @ContextConfiguration(locations = { "classpath:applicationContext-infrastructure.xml" })
-public class PersonServiceTest{
-	
+public class PersonServiceTest {
+
 	@Autowired
 	private PersonService personService;
-	
-	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-	
+
 	@Test
 	@Rollback
-	public void testPersist(){		
-		Person homer = generatePerson();	
+	public void testPersist() {
+		Person homer = DataSeeder.generatePerson();
 		homer.setEmail(null);
 		personService.persist(homer);
 		assertEquals("Homer", personService.find(homer.getId()).getFirstName());
 	}
-	
+
 	@Test
 	@Rollback
-	public void testUpdate(){		
-		Person person = generatePerson();		
+	public void testUpdate() {
+		Person person = DataSeeder.generatePerson();
 		personService.persist(person);
 		person.setFirstName("Marge");
 		personService.merge(person);
 		assertEquals("Marge", personService.find(person.getId()).getFirstName());
 	}
-	
+
 	@Test
 	@Rollback
-	public void testDelete(){		
-		Person homer = generatePerson();		
+	public void testDelete() {
+		Person homer = DataSeeder.generatePerson();
 		personService.persist(homer);
-		personService.remove(homer);	
+		personService.remove(homer);
 		assertEquals(0l, personService.findAll().size());
 	}
-	
+
 	@Test
 	@Rollback
-	public void testRead(){		
-		Person homer = generatePerson();		
+	public void testRead() {
+		Person homer = DataSeeder.generatePerson();
 		personService.persist(homer);
 		Person result = personService.find(homer.getId());
 		assertEquals("Homer", result.getFirstName());
@@ -79,34 +72,11 @@ public class PersonServiceTest{
 		assertEquals("Ohio", result.getAddress().getState());
 		assertEquals("USA", result.getAddress().getCountry());
 	}
-	
+
 	@Test
 	@Rollback
-	public void testFindByLastName(){
-		personService.persist(generatePerson());
+	public void testFindByLastName() {
+		personService.persist(DataSeeder.generatePerson());
 		assertEquals("Homer", personService.findByLastName("Simpson").get(0).getFirstName());
-	}
-	
-	@Test
-	@Rollback
-	public void testValidation(){
-		Person homer = generatePerson();
-		homer.setEmail("");
-		ConstraintViolation<Person> constraint = validator.validate(homer).iterator().next();
-		assertEquals("Email invalid", constraint.getMessage());
-		assertEquals("email", constraint.getPropertyPath());		
-	}
-	
-	private Person generatePerson(){
-		Person person = new Person();
-		person.setFirstName("Homer");
-		person.setLastName("Simpson");
-		person.setEmail("homer@simpsons.com");
-		person.setAddress(generateAddress());
-		return person;
-	}
-	
-	private Address generateAddress(){
-		return new Address("Evergreen Terrace", "99a", "Springfield", "57657", "Ohio", "USA");
 	}
 }

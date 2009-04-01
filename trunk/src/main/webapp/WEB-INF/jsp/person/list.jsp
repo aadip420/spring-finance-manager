@@ -1,6 +1,11 @@
 <jsp:directive.include file="/WEB-INF/jsp/includes.jsp"/>
 <jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
+<script type="text/javascript">dojo.require("dijit.TitlePane");</script>
+<div dojoType="dijit.TitlePane" style="width: 100%" title="List All People">
     <c:if test="${not empty people}">
+    	<c:if test="${not empty param['integrityViolation']}">
+    		<span class="errors">${param['integrityViolation']}</span>
+    	</c:if>
         <table width="300px">
             <tr>
                 <thead>
@@ -39,4 +44,5 @@
         </table>
     </c:if>
     <c:if test="${empty people}">No people found.</c:if>
+</div>
 <jsp:directive.include file="/WEB-INF/jsp/footer.jsp"/>
