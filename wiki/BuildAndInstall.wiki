@@ -1,4 +1,5 @@
 #summary short manual to building and installing the Spring Finance Manager sample application
+#labels Featured
 
 === Source Access ===
 There should be one tag per article released.
