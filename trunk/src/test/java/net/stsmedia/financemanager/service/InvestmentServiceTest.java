@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager")
-@ContextConfiguration(locations = { "classpath:applicationContext-infrastructure.xml" })
+@ContextConfiguration(locations = { "classpath:FinanceManager-test.xml" })
 public class InvestmentServiceTest {
 
 	@Autowired

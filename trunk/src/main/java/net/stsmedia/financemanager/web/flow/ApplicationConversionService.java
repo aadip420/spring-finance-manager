@@ -12,6 +12,13 @@ import org.springframework.binding.convert.converters.StringToDate;
 import org.springframework.binding.convert.service.DefaultConversionService;
 import org.springframework.stereotype.Component;
 
+/**
+ * Conversion service registration point for Spring Web Flow.
+ * 
+ * @author Stefan Schmidt
+ * @since 0.3
+ *
+ */
 @Component("conversionService")
 public class ApplicationConversionService extends DefaultConversionService {
 	

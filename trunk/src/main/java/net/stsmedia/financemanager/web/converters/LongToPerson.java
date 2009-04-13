@@ -6,12 +6,12 @@ import net.stsmedia.financemanager.service.PersonService;
 import org.springframework.binding.convert.converters.TwoWayConverter;
 
 /**
- * A editor which allows the translation between {@link String} and
+ * A editor which allows the translation between {@link Long} and
  * {@link Person}.
  * 
  * 
  * @author Stefan Schmidt
- * @since 0.1
+ * @since 0.3
  * 
  */
 public class LongToPerson implements TwoWayConverter {
