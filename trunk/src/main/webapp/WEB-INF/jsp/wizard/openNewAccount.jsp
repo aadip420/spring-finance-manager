@@ -34,7 +34,7 @@
         <br/>
         <div class="submit buttonGroup">
         	<input type="submit" name="_eventId_cancel" value="Cancel"/>&#160;
-			<input type="submit" id=showAccount name="_eventId_showAccount" value="Add Investments" />&#160;
+			<input type="submit" id=showAccount name="_eventId_showAccount" value="Show Account" />&#160;
 			<script type="text/javascript">
 				Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'showAccount', event:'onclick'}));
 			</script>			
