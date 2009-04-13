@@ -24,14 +24,12 @@ public class LongToPerson implements TwoWayConverter {
 
 	public Object convertTargetToSourceClass(Object target, Class sourceClass)
 			throws Exception {
-		System.out.println("\n\n " + target.toString());
 		Person person = (Person) target;
 		return person.toString();
 	}
 
 	public Object convertSourceToTargetClass(Object source, Class targetClass)
 			throws Exception {
-		System.out.println("\n\n " + source.toString());
 		Long longSource = (Long) source;
 		if (longSource != null && longSource > 0) {
 			return personService.find(longSource);
@@ -47,5 +45,4 @@ public class LongToPerson implements TwoWayConverter {
 	public Class getTargetClass() {
 		return Person.class;
 	}
-
 }

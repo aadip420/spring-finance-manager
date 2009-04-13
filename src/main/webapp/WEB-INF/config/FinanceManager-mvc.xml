@@ -25,14 +25,13 @@
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
 	
-	<!--  -->
 	<!-- Maps request paths to flows in the flowRegistry; e.g. a path of /wizard looks for a flow with id "wizard" -->
 	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
 		<property name="order" value="0" />
 		<property name="flowRegistry" ref="flowRegistry" />
 	</bean>
 	
-		<!-- Maps request paths to @Controller classes; e.g. a path of /person looks for a controller named PersonController -->
+	<!-- Maps request paths to @Controller classes; e.g. a path of /person looks for a controller named PersonController -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="1" />
 	</bean>
