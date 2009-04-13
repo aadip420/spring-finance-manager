@@ -11,7 +11,7 @@ import org.springframework.binding.convert.converters.TwoWayConverter;
  * 
  * 
  * @author Stefan Schmidt
- * @since 0.1
+ * @since 0.3
  * 
  */
 public class StringToPerson implements TwoWayConverter {
