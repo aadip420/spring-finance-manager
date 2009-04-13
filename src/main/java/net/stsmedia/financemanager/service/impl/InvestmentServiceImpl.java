@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @since 0.2
  * 
  */
-@Service
+@Service("investmentService")
 @Repository
 public class InvestmentServiceImpl extends GenericDAOWithJPA<Investment, Long> implements InvestmentService {
 }

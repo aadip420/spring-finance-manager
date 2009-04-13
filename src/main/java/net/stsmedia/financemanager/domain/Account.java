@@ -1,5 +1,6 @@
 package net.stsmedia.financemanager.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ import org.springframework.core.style.ToStringCreator;
  * 
  */
 @Entity
-public class Account {
+public class Account implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -83,6 +84,10 @@ public class Account {
 
 	public void setOwners(Set<Person> owners) {
 		this.owners = owners;
+	}
+	
+	public void addOwner(Person person) {
+		this.owners.add(person);
 	}
 
 	public Person getManager() {

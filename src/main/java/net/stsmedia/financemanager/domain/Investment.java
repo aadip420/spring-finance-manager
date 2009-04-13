@@ -1,5 +1,6 @@
 package net.stsmedia.financemanager.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ import javax.validation.constraints.NotNull;
  * 
  */
 @Entity
-public class Investment {
+public class Investment implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -102,8 +103,6 @@ public class Investment {
 
 	public String toString() {
 		StringBuilder string = new StringBuilder();
-		string.append("Product: " + getProduct().getName()).append(", ");
-		string.append("Investment: " + (getUnit() * getInitialUnitPrice()));
 		return string.toString();
 	}
 }

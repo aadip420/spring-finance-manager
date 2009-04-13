@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd">
+
+	<!-- Executes flows: the entry point into the Spring Web Flow system -->
+	<webflow:flow-executor id="flowExecutor"/>
+	
+	<!-- The registry of executable flow definitions -->
+	<webflow:flow-registry id="flowRegistry" flow-builder-services="flowBuilderServices" base-path="/WEB-INF/jsp">
+		<webflow:flow-location-pattern value="/**/*-flow.xml" />
+	</webflow:flow-registry>
+		
+	<!-- Plugs in a custom creator for Web Flow views -->
+	<webflow:flow-builder-services id="flowBuilderServices"  view-factory-creator="mvcViewFactoryCreator" conversion-service="conversionService" development="true" />
+	
+	<!-- Configures Web Flow to use Tiles to create views for rendering; Tiles allows for applying consistent layouts to your views -->
+	<bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator"> 
+		<property name="viewResolvers" ref="wizardViewResolver"/> 
+	</bean>
+	
+	<bean id="wizardViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/wizard/" p:suffix=".jsp"/>
+
+	<bean name="personBean" class="net.stsmedia.financemanager.domain.Person" scope="prototype"/>
+	<bean name="accountBean" class="net.stsmedia.financemanager.domain.Account" scope="prototype" />	
+	<bean name="cashBean" class="net.stsmedia.financemanager.domain.Cash" scope="prototype" />
+	<bean name="loanBean" class="net.stsmedia.financemanager.domain.Loan" scope="prototype" />
+	<bean name="managedFundBean" class="net.stsmedia.financemanager.domain.ManagedFund" scope="prototype" />
+	<bean name="investmentBean" class="net.stsmedia.financemanager.domain.Investment" scope="prototype" />
+
+</beans>

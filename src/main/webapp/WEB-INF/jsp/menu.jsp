@@ -23,5 +23,12 @@
 		<li><a href="/FinanceManager/product/form/managedFund">Create Managed Fund Product</a></li>
 		<li><a href="/FinanceManager/product/form/loan">Create Loan Product</a></li>
 	</ul>
+	</li>
+	
+	<li>
+	<h2>Wizard</h2>
+	<ul>
+		<li><a href="/FinanceManager/wizard">Start</a></li>
+	</ul>
 	</li>	
 </ul>
