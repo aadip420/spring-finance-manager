@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @since 0.2
  * 
  */
-@Service
+@Service("accountService")
 @Repository
 public class AccountServiceImpl extends GenericDAOWithJPA<Account, Long> implements AccountService {
 

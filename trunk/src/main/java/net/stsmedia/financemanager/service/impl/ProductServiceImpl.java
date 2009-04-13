@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @since 0.2
  * 
  */
-@Service
+@Service("productService")
 @Repository
 public class ProductServiceImpl extends GenericDAOWithJPA<Product, Long> implements ProductService {
 

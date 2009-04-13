@@ -1,5 +1,7 @@
 package net.stsmedia.financemanager.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +23,7 @@ import org.springframework.core.style.ToStringCreator;
  * 
  */
 @Entity
-public abstract class Product {
+public abstract class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
  * @since 0.1
  * 
  */
-@Service
+@Service("personService")
 @Repository
 public class PersonServiceImpl extends GenericDAOWithJPA<Person, Long> implements PersonService {
 

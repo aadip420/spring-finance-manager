@@ -1,5 +1,7 @@
 package net.stsmedia.financemanager.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -16,7 +18,7 @@ import org.springframework.util.Assert;
  * 
  */
 @Embeddable
-public class Address {
+public class Address implements Serializable {
 
 	@NotNull
 	@Pattern(regexp = ".+", message = "Street name must not be empty!")
