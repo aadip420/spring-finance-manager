@@ -5,6 +5,8 @@ import java.util.List;
 import net.stsmedia.financemanager.dao.GenericDAOWithJPA;
 import net.stsmedia.financemanager.domain.Account;
 
+import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -15,16 +17,21 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 0.2
  * 
  */
+@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 public interface AccountService {
 
+	@PostFilter("filterObject.owners.email == principal.username or hasRole('ROLE_ADMIN')")
 	List<Account> findAll();
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	void persist(Account entity);
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	void merge(Account entity);
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	void remove(Account entity);
 

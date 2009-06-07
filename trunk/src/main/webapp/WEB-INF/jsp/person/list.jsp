@@ -34,11 +34,13 @@
                             <input alt="Update Person" src="/FinanceManager/static/images/update.png" title="Update Person" type="image" value="Update Person"/>
                         </form:form>
                     </td>
+                    <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <td>
                         <form:form action="/FinanceManager/person/${person.id}" method="DELETE">
                             <input alt="Delete Person" src="/FinanceManager/static/images/delete.png" title="Delete Person" type="image" value="Delete Person"/>
                         </form:form>
                     </td>
+                    </sec:authorize>
                 </tr>
             </c:forEach>
         </table>

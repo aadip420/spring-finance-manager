@@ -41,7 +41,7 @@ public class ProductEditor extends PropertyEditorSupport {
 	}
 
 	public void setAsText(String text) {
-		if (text == null || "".equals(text)) {
+		if (text == null || text.length() == 0) {
 			setValue(null);
 			return;
 		}

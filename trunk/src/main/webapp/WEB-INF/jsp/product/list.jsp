@@ -33,6 +33,7 @@
                             <input alt="Show Product" src="/FinanceManager/static/images/show.png" title="Show ManagedFund" type="image" value="Show ManagedFund"/>
                         </form:form>
                     </td>
+                    <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <td>
                         <form:form action="/FinanceManager/product/${product.id}/form" method="GET">
                             <input alt="Update Product" src="/FinanceManager/static/images/update.png" title="Update ManagedFund" type="image" value="Update ManagedFund"/>
@@ -43,6 +44,7 @@
                             <input alt="Delete ManagedFund" src="/FinanceManager/static/images/delete.png" title="Delete ManagedFund" type="image" value="Delete ManagedFund"/>
                         </form:form>
                     </td>
+                    </sec:authorize>
                 </tr>
             </c:forEach>
         </table>

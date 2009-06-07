@@ -28,6 +28,7 @@
                             <input alt="Show Account" src="/FinanceManager/static/images/show.png" title="Show Account" type="image" value="Show Account"/>
                         </form:form>
                     </td>
+                    <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <td>
                         <form:form action="/FinanceManager/account/${account.id}/form" method="GET">
                             <input alt="Update Account" src="/FinanceManager/static/images/update.png" title="Update Account" type="image" value="Update Account"/>
@@ -38,6 +39,7 @@
                             <input alt="Delete Account" src="/FinanceManager/static/images/delete.png" title="Delete Account" type="image" value="Delete Account"/>
                         </form:form>
                     </td>
+                    </sec:authorize>
                 </tr>
             </c:forEach>
         </table>
