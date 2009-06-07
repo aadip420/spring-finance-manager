@@ -5,6 +5,7 @@ import java.util.List;
 import net.stsmedia.financemanager.dao.GenericDAOWithJPA;
 import net.stsmedia.financemanager.domain.Product;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -19,12 +20,15 @@ public interface ProductService {
 
 	List<Product> findAll();
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	void persist(Product entity);
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	void merge(Product entity);
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	void remove(Product entity);
 

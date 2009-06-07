@@ -57,13 +57,13 @@ public class AccountController {
 
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
-	@RequestMapping(value = "account", method = RequestMethod.GET)
+	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	public String list(ModelMap modelMap) {
 		modelMap.addAttribute("accounts", accountService.findAll());
 		return "account/list";
 	}
 
-	@RequestMapping(value = "account/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/account/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Long id, ModelMap modelMap) {
 		Assert.notNull(id, "Identifier must be provided.");
 		modelMap.addAttribute("account", accountService.find(id));
@@ -72,21 +72,21 @@ public class AccountController {
 		return "account/show";
 	}
 
-	@RequestMapping(value = "account/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/account/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable("id") Long id) {
 		Assert.notNull(id, "Identifier must be provided.");
 		accountService.remove(accountService.find(id));
 		return "redirect:/account";
 	}
 
-	@RequestMapping(value = "account/form", method = RequestMethod.GET)
+	@RequestMapping(value = "/account/form", method = RequestMethod.GET)
 	public String form(ModelMap modelMap) {
 		modelMap.addAttribute("people", personService.findAll());
 		modelMap.addAttribute("account", new Account());
 		return "account/create";
 	}
 
-	@RequestMapping(value = "account", method = RequestMethod.POST)
+	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String create(@ModelAttribute("account") Account account, BindingResult result) {
 		Assert.notNull(account, "Account must be provided.");
 		for (ConstraintViolation<Account> constraint : validator.validate(account)) {
@@ -98,7 +98,7 @@ public class AccountController {
 		return "redirect:/account/" + account.getId();
 	}
 
-	@RequestMapping(value = "account/{id}/form", method = RequestMethod.GET)
+	@RequestMapping(value = "/account/{id}/form", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, ModelMap modelMap) {
 		Assert.notNull(id, "Identifier must be provided.");
 		modelMap.addAttribute("people", personService.findAll());
@@ -119,7 +119,7 @@ public class AccountController {
 		return "redirect:/account/" + account.getId();
 	}
 
-	@RequestMapping(value = "{accountId}/investment", method = RequestMethod.POST)
+	@RequestMapping(value = "/{accountId}/investment", method = RequestMethod.POST)
 	public String create(@PathVariable("accountId") Long accountId, @ModelAttribute("investment") Investment investment) {
 		Assert.notNull(investment, "Investment must be provided.");
 		Assert.notNull(accountId, "Account ID be provided.");

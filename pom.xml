@@ -5,7 +5,7 @@
 	<groupId>net.stsmedia.financemanager</groupId>
 	<artifactId>FinanceManager</artifactId>
 	<packaging>war</packaging>
-	<version>0.1</version>
+	<version>0.4</version>
 	<name>FinanceManager</name>
 
 	<description>Spring Finance Manager - a sample application</description>
@@ -216,6 +216,21 @@
 			<version>${webflow.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.el</groupId>
 			<artifactId>com.springsource.org.jboss.el</artifactId>
 			<version>2.0.0.GA</version>
@@ -266,6 +281,8 @@
 			<artifactId>com.springsource.org.hsqldb</artifactId>
 			<version>1.8.0.9</version>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -351,8 +368,9 @@
 		</plugins>
 	</build>
 	<properties>
-		<spring.version>3.0.0.M2</spring.version>
-		<webflow.version>2.0.6.RELEASE</webflow.version>
+		<spring.version>3.0.0.M3</spring.version>
+		<webflow.version>2.0.7.RELEASE</webflow.version>
 		<aspectj.version>1.6.3.RELEASE</aspectj.version>
+		<spring.security.version>3.0.0.M1</spring.security.version>
 	</properties>
 </project>

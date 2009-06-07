@@ -5,6 +5,7 @@ import java.util.List;
 import net.stsmedia.financemanager.dao.GenericDAOWithJPA;
 import net.stsmedia.financemanager.domain.Investment;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 0.2
  * 
  */
+@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 public interface InvestmentService {
 
 	List<Investment> findAll();

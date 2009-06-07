@@ -23,7 +23,14 @@
             <form:errors path="email" cssClass="errors"/>
             <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "email", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {invalidMessage: "Enter Email (numbers only)", regExp: "[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", required : true}})); </script>
         </div>
-        <br/>
+        <br/>        
+        <div>        	
+            <label for="password">Password:</label>
+            <form:password cssStyle="width:250px" maxlength="30" path="password" size="30"/>
+            <form:errors path="password" cssClass="errors"/><br/>
+            <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : "password", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {invalidMessage: "Enter Account Password", required : true}})); </script>
+        </div>        
+        <br/>  
         <div>
             <label for="streetName">Street Name:</label>
             <form:input cssStyle="width:250px" maxlength="30" path="address.streetName" id="streetName" size="30"/>

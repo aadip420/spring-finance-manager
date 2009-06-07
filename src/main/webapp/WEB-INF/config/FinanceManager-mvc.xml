@@ -3,10 +3,8 @@
  	xmlns:context="http://www.springframework.org/schema/context" 
  	xmlns:p="http://www.springframework.org/schema/p" 
  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
- 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd     
- 		http://www.springframework.org/schema/context 
- 		http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+ 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd     
+ 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<!--
 		- This bean resolves specific types of exceptions to corresponding logical 
@@ -18,7 +16,9 @@
 		<property name="exceptionMappings">
 			<props>
 				<prop key=".DataAccessException">dataAccessFailure</prop>		
-				<prop key=".lang.Exception">uncaughtException</prop>				
+				<prop key=".lang.Exception">uncaughtException</prop>		
+				<prop key=".AuthenticationCredentialsNotFoundException">login</prop>		
+				<prop key=".AccessDeniedException">login</prop>
 			</props>
 		</property>
 	</bean>

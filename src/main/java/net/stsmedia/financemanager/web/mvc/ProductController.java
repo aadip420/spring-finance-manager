@@ -48,20 +48,20 @@ public class ProductController {
 
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
-	@RequestMapping(value = "product", method = RequestMethod.GET)
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public String list(ModelMap modelMap) {
 		modelMap.addAttribute("products", productService.findAll());
 		return "product/list";
 	}
 
-	@RequestMapping(value = "product/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Long id, ModelMap modelMap) {
 		Assert.notNull(id, "Identifier must be provided.");
 		modelMap.addAttribute("product", productService.find(id));
 		return "product/show";
 	}
 
-	@RequestMapping(value = "product/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable("id") Long id, ModelMap modelMap) {
 		Assert.notNull(id, "Identifier must be provided.");
 		try {
@@ -72,7 +72,7 @@ public class ProductController {
 		return "redirect:/product";
 	}
 
-	@RequestMapping(value = "product/form/{type}", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/form/{type}", method = RequestMethod.GET)
 	public String form(@PathVariable("type") String type, ModelMap modelMap) {
 		if ("cash".equals(type)) {
 			modelMap.addAttribute("cash", new Cash());
@@ -85,7 +85,7 @@ public class ProductController {
 		return "product/create";
 	}
 
-	@RequestMapping(value = "product/cash", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/cash", method = RequestMethod.POST)
 	public String createCash(@ModelAttribute("cash") Cash product, BindingResult result) {
 		Assert.notNull(product, "Product must be provided.");
 		for (ConstraintViolation<Cash> constraint : validator.validate(product)) {
@@ -97,7 +97,7 @@ public class ProductController {
 		return "redirect:/product/" + product.getId();
 	}
 
-	@RequestMapping(value = "product/managedFund", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/managedFund", method = RequestMethod.POST)
 	public String createManagedFund(@ModelAttribute("managedFund") ManagedFund product, BindingResult result) {
 		Assert.notNull(product, "Product must be provided.");
 		for (ConstraintViolation<ManagedFund> constraint : validator.validate(product)) {
@@ -109,7 +109,7 @@ public class ProductController {
 		return "redirect:/product/" + product.getId();
 	}
 
-	@RequestMapping(value = "product/loan", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/loan", method = RequestMethod.POST)
 	public String createLoan(@ModelAttribute("loan") Loan product, BindingResult result) {
 		Assert.notNull(product, "Product must be provided.");
 		for (ConstraintViolation<Loan> constraint : validator.validate(product)) {
@@ -122,14 +122,14 @@ public class ProductController {
 		return "redirect:/product/" + product.getId();
 	}
 
-	@RequestMapping(value = "product/{id}/form", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/{id}/form", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, ModelMap modelMap) {
 		Assert.notNull(id, "Identifier must be provided.");
 		modelMap.addAttribute("product", productService.find(id));
 		return "product/update";
 	}
 
-	@RequestMapping(value = "product/Cash", method = RequestMethod.PUT)
+	@RequestMapping(value = "/product/Cash", method = RequestMethod.PUT)
 	public String updateCash(@ModelAttribute("cash") Cash product, BindingResult result) {
 		Assert.notNull(product, "product must be provided.");
 		for (ConstraintViolation<Cash> constraint : validator.validate(product)) {
@@ -141,7 +141,7 @@ public class ProductController {
 		return "redirect:/product/" + product.getId();
 	}
 
-	@RequestMapping(value = "product/ManagedFund", method = RequestMethod.PUT)
+	@RequestMapping(value = "/product/ManagedFund", method = RequestMethod.PUT)
 	public String updateManagedFund(@ModelAttribute("ManagedFund") ManagedFund product, BindingResult result) {
 		Assert.notNull(product, "product must be provided.");
 		for (ConstraintViolation<ManagedFund> constraint : validator.validate(product)) {
@@ -153,7 +153,7 @@ public class ProductController {
 		return "redirect:/product/" + product.getId();
 	}
 
-	@RequestMapping(value = "product/Loan", method = RequestMethod.PUT)
+	@RequestMapping(value = "/product/Loan", method = RequestMethod.PUT)
 	public String updateLoan(@ModelAttribute("loan") Loan product, BindingResult result) {
 		Assert.notNull(product, "product must be provided.");
 		for (ConstraintViolation<Loan> constraint : validator.validate(product)) {
