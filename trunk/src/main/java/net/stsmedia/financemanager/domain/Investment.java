@@ -103,6 +103,10 @@ public class Investment implements Serializable {
 
 	public String toString() {
 		StringBuilder string = new StringBuilder();
+		string.append(product);
+		string.append(", units: "+ unit);
+		string.append(", price: " + initialUnitPrice);
+		string.append(", date: " + transactionDate);
 		return string.toString();
 	}
 }

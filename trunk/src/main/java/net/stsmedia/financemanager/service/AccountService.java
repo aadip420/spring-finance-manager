@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 public interface AccountService {
 
+	//TODO:this does not work
 	@PostFilter("filterObject.owners.email == principal.username or hasRole('ROLE_ADMIN')")
 	List<Account> findAll();
 

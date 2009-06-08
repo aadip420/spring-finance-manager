@@ -7,7 +7,11 @@
            http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd">
 
 	<!-- Executes flows: the entry point into the Spring Web Flow system -->
-	<webflow:flow-executor id="flowExecutor"/>
+	<webflow:flow-executor id="flowExecutor" flow-registry="flowRegistry">
+    	<webflow:flow-execution-listeners>
+        	<webflow:listener ref="securityFlowExecutionListener" />
+    	</webflow:flow-execution-listeners>
+	</webflow:flow-executor>
 	
 	<!-- The registry of executable flow definitions -->
 	<webflow:flow-registry id="flowRegistry" flow-builder-services="flowBuilderServices" base-path="/WEB-INF/jsp">
@@ -22,7 +26,9 @@
 	</bean>
 	
 	<bean id="wizardViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/wizard/" p:suffix=".jsp"/>
-
+	
+	<bean id="securityFlowExecutionListener" class="org.springframework.webflow.security.SecurityFlowExecutionListener" />
+	
 	<bean name="personBean" class="net.stsmedia.financemanager.domain.Person" scope="prototype"/>
 	<bean name="accountBean" class="net.stsmedia.financemanager.domain.Account" scope="prototype" />	
 	<bean name="cashBean" class="net.stsmedia.financemanager.domain.Cash" scope="prototype" />

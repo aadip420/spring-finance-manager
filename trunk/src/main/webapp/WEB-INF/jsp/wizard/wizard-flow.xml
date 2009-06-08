@@ -3,9 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
+	<!-- this is the typical setup to secure the complete flow, 
+		commented out because Spring Security 3 is currently not compatible with SWF 2.0.7
+	<secured attributes="ROLE_ADMIN"/>-->
+	
 	<persistence-context />
-
+	
 	<view-state id="createNewPerson" model="person">
+		<!-- this is the typical setup to secure this view state, 
+			commented out because Spring Security 3 is currently not compatible with SWF 2.0.7
+		<secured attributes="ROLE_ADMIN"/>-->
 		<on-entry>
 			<evaluate expression="personBean" result="viewScope.person" />
 		</on-entry>
