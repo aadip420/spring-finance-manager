@@ -7,10 +7,15 @@ import net.stsmedia.financemanager.domain.Investment;
 import net.stsmedia.financemanager.domain.Loan;
 import net.stsmedia.financemanager.domain.Person;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -43,6 +48,9 @@ public class AccountServiceTest {
 
 	@Before
 	public void setup() {
+	    Authentication authRequest = new UsernamePasswordAuthenticationToken("ignored", "ignored", AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
+	    SecurityContextHolder.getContext().setAuthentication(authRequest);
+
 		account = DataSeeder.generateAccount();
 
 		for (Person person : account.getOwners())
@@ -71,7 +79,7 @@ public class AccountServiceTest {
 	@Rollback
 	public void testPersist() {
 		accountService.persist(account);
-		assertEquals("Homer Simpson House Loan", accountService.find(2l).getName());
+		assertEquals("Homer Simpson House Loan", accountService.findAll().get(0).getName());
 	}
 
 	@Test
@@ -97,5 +105,10 @@ public class AccountServiceTest {
 	public void testFind() {
 		accountService.persist(account);
 		assertNotNull(accountService.find(5l));
+	}
+	
+	@After
+	public void tearDown(){
+		SecurityContextHolder.clearContext();
 	}
 }

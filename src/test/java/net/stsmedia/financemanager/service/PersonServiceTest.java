@@ -3,9 +3,14 @@ package net.stsmedia.financemanager.service;
 import static org.junit.Assert.assertEquals;
 import net.stsmedia.financemanager.domain.Person;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,6 +32,13 @@ public class PersonServiceTest {
 
 	@Autowired
 	private PersonService personService;
+	
+	@Before
+	public void setup(){
+		Authentication authRequest = new UsernamePasswordAuthenticationToken("ignored", "ignored", AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
+	    SecurityContextHolder.getContext().setAuthentication(authRequest);
+
+	}
 
 	@Test
 	@Rollback
@@ -53,7 +65,7 @@ public class PersonServiceTest {
 		Person homer = DataSeeder.generatePerson();
 		personService.persist(homer);
 		personService.remove(homer);
-		assertEquals(0l, personService.findAll().size());
+		assertEquals(1l, personService.findAll().size());
 	}
 
 	@Test
