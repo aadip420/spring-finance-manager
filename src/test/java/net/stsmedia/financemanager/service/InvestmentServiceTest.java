@@ -5,6 +5,7 @@ import net.stsmedia.financemanager.domain.Investment;
 import net.stsmedia.financemanager.domain.Loan;
 import net.stsmedia.financemanager.domain.Person;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -71,5 +72,10 @@ public class InvestmentServiceTest {
 	public void testPersist() {
 		investmentService.persist(investment);
 		assertEquals(1, investmentService.findAll().size());
+	}
+	
+	@After
+	public void tearDown(){
+		SecurityContextHolder.clearContext();
 	}
 }
