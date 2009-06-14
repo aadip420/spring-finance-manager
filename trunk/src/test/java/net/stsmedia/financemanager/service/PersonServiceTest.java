@@ -3,6 +3,7 @@ package net.stsmedia.financemanager.service;
 import static org.junit.Assert.assertEquals;
 import net.stsmedia.financemanager.domain.Person;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -90,5 +91,10 @@ public class PersonServiceTest {
 	public void testFindByLastName() {
 		personService.persist(DataSeeder.generatePerson());
 		assertEquals("Homer", personService.findByLastName("Simpson").get(0).getFirstName());
+	}
+	
+	@After
+	public void tearDown(){
+		SecurityContextHolder.clearContext();
 	}
 }

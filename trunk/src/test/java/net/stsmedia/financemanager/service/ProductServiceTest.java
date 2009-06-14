@@ -5,6 +5,8 @@ import net.stsmedia.financemanager.domain.Person;
 import net.stsmedia.financemanager.domain.Product;
 
 import static org.junit.Assert.*;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -90,5 +92,10 @@ public class ProductServiceTest {
 	public void testFind() {
 		productService.persist(product);
 		assertNotNull(productService.find(product.getId()));
+	}
+	
+	@After
+	public void tearDown(){
+		SecurityContextHolder.clearContext();
 	}
 }
