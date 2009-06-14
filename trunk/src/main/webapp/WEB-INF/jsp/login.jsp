@@ -2,6 +2,9 @@
 <jsp:directive.include file="/WEB-INF/jsp/header.jsp"/>
 <script type="text/javascript">dojo.require("dijit.TitlePane");</script>
 <div dojoType="dijit.TitlePane" style="width: 100%" title="Spring Security Login">
+
+	<p>The default admin user is configured with email: 'super@admin.com' and password 'admin' </p>
+
     <%-- this form-login-page form is also used as the
          form-error-page to ask for a login again.
          --%>
