@@ -8,13 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import net.stsmedia.financemanager.security.Authorities;
 
 /**
  * A JPA entity for the person domain object.
@@ -24,8 +21,8 @@ import net.stsmedia.financemanager.security.Authorities;
  * 
  */
 @Entity
-public class Person implements Serializable{
-
+public class Person implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

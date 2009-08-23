@@ -20,7 +20,7 @@ import org.springframework.core.style.ToStringCreator;
 @Entity
 public class Loan extends Product {
 
-	@NotNull
+	@NotNull()
 	private Float interest;
 
 	@NotNull

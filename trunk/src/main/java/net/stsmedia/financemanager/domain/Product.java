@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import org.hibernate.validation.constraints.Length;
 import org.springframework.core.style.ToStringCreator;
 
 /**
@@ -35,7 +35,7 @@ public abstract class Product implements Serializable {
 	private java.lang.Integer version;
 
 	@NotNull
-	@Length(min = 1, max = 30)
+	@Size(min = 1, max = 30)
 	@Pattern(regexp = ".+", message = "Name must not be empty!")
 	private String name;
 
