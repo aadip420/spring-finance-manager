@@ -23,7 +23,7 @@
 		</property>
 	</bean>
 	
-	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver" p:order="1">
 		<property name="mediaTypes">
 			<map>
 				<entry key="xml" value="application/xml"/>
@@ -34,13 +34,12 @@
 			<list>
 				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
 					<property name="marshaller">
-						<bean class="org.springframework.oxm.xstream.XStreamMarshaller" />
+						<bean class="org.springframework.oxm.xstream.XStreamMarshaller" p:autodetectAnnotations="true" />
 					</property>
 				</bean>
 				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 			</list>
 		</property>
-		<property name="order" value="1" />
 	</bean>
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="2"/>

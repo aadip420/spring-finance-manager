@@ -5,7 +5,7 @@
 	<groupId>net.stsmedia.financemanager</groupId>
 	<artifactId>FinanceManager</artifactId>
 	<packaging>war</packaging>
-	<version>0.4</version>
+	<version>0.5</version>
 	<name>FinanceManager</name>
 
 	<description>Spring Finance Manager - a sample application</description>

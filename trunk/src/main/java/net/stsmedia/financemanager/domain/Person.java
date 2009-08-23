@@ -13,6 +13,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 /**
  * A JPA entity for the person domain object.
  * 
@@ -20,6 +22,7 @@ import javax.validation.constraints.Pattern;
  * @since 0.1
  * 
  */
+@XStreamAlias("person")
 @Entity
 public class Person implements Serializable {
 	
