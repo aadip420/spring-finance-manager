@@ -2,8 +2,7 @@ package net.stsmedia.financemanager.domain;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validation.constraints.Length;
+import javax.validation.constraints.Size;
 
 /**
  * A JPA entity for the managed fund domain object.
@@ -16,7 +15,7 @@ import org.hibernate.validation.constraints.Length;
 public class ManagedFund extends Product {
 
 	@NotNull
-	@Length(min = 0, max = 15)
+	@Size(min = 0, max = 15)
 	private String fundId;
 
 	private Double distribution;

@@ -90,7 +90,7 @@ public class AccountController {
 	public String create(@ModelAttribute("account") Account account, BindingResult result) {
 		Assert.notNull(account, "Account must be provided.");
 		for (ConstraintViolation<Account> constraint : validator.validate(account)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "account/create";
@@ -111,7 +111,7 @@ public class AccountController {
 	public String update(@ModelAttribute("account") Account account, BindingResult result) {
 		Assert.notNull(account, "Account must be provided.");
 		for (ConstraintViolation<Account> constraint : validator.validate(account)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "account/update";

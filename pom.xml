@@ -53,42 +53,11 @@
 		<repository>
 			<id>com.springsource.repository.bundles.milestone</id>
 			<name>SpringSource Enterprise Bundle Repository - External Bundle Milestones</name>
-			<url>http://repository.springsource.com/maven/bundles/milestone</url>
-		</repository>
-		<repository>
-			<id>jboss</id>
-			<url>http://repository.jboss.com/maven2</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>jboss-snapshot</id>
-			<url>http://snapshots.jboss.org/maven2</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+			<url>http://maven.springframework.org/milestone</url>
 		</repository>
 	</repositories>
 
 	<dependencies>
-		<!-- ASM is needed by Spring Framework -->
-		<dependency>
-			<groupId>org.objectweb.asm</groupId>
-			<artifactId>com.springsource.org.objectweb.asm</artifactId>
-			<version>2.2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.objectweb.asm</groupId>
-			<artifactId>com.springsource.org.objectweb.asm.commons</artifactId>
-			<version>2.2.3</version>
-		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>com.springsource.javax.persistence</artifactId>
@@ -219,6 +188,7 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring.security.version}</version>
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -242,8 +212,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.0.Alpha3</version>
+			<artifactId>com.springsource.org.hibernate.validator</artifactId>
+			<version>4.0.0.Beta2</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
@@ -253,8 +223,8 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.0.CR1</version>
+			<artifactId>com.springsource.javax.validation</artifactId>
+			<version>1.0.0.CR3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -281,8 +251,6 @@
 			<artifactId>com.springsource.org.hsqldb</artifactId>
 			<version>1.8.0.9</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -368,9 +336,9 @@
 		</plugins>
 	</build>
 	<properties>
-		<spring.version>3.0.0.M3</spring.version>
-		<webflow.version>2.0.7.RELEASE</webflow.version>
-		<aspectj.version>1.6.3.RELEASE</aspectj.version>
-		<spring.security.version>3.0.0.M1</spring.security.version>
+		<spring.version>3.0.0.M4</spring.version>
+		<webflow.version>2.0.8.RELEASE</webflow.version>
+		<aspectj.version>1.6.5.RELEASE</aspectj.version>
+		<spring.security.version>3.0.0.M2</spring.security.version>
 	</properties>
 </project>

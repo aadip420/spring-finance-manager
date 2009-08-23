@@ -85,7 +85,7 @@ public class PersonController {
 		authorityService.persist(authorities);
 		
 		for (ConstraintViolation<Person> constraint : validator.validate(person)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "/person/create";
@@ -104,7 +104,7 @@ public class PersonController {
 	public String update(@ModelAttribute("person") Person person, BindingResult result) {
 		Assert.notNull(person, "Person must be provided.");
 		for (ConstraintViolation<Person> constraint : validator.validate(person)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "person/update";

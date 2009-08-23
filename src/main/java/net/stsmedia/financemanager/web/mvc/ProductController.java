@@ -89,7 +89,7 @@ public class ProductController {
 	public String createCash(@ModelAttribute("cash") Cash product, BindingResult result) {
 		Assert.notNull(product, "Product must be provided.");
 		for (ConstraintViolation<Cash> constraint : validator.validate(product)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "product/create";
@@ -101,7 +101,7 @@ public class ProductController {
 	public String createManagedFund(@ModelAttribute("managedFund") ManagedFund product, BindingResult result) {
 		Assert.notNull(product, "Product must be provided.");
 		for (ConstraintViolation<ManagedFund> constraint : validator.validate(product)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "product/create";
@@ -113,7 +113,7 @@ public class ProductController {
 	public String createLoan(@ModelAttribute("loan") Loan product, BindingResult result) {
 		Assert.notNull(product, "Product must be provided.");
 		for (ConstraintViolation<Loan> constraint : validator.validate(product)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 			System.err.println("\n\n " + constraint.getMessage() + "\n\n");
 		}
 		if (result.hasErrors())
@@ -133,7 +133,7 @@ public class ProductController {
 	public String updateCash(@ModelAttribute("cash") Cash product, BindingResult result) {
 		Assert.notNull(product, "product must be provided.");
 		for (ConstraintViolation<Cash> constraint : validator.validate(product)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "product/update";
@@ -145,7 +145,7 @@ public class ProductController {
 	public String updateManagedFund(@ModelAttribute("ManagedFund") ManagedFund product, BindingResult result) {
 		Assert.notNull(product, "product must be provided.");
 		for (ConstraintViolation<ManagedFund> constraint : validator.validate(product)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "product/update";
@@ -157,7 +157,7 @@ public class ProductController {
 	public String updateLoan(@ModelAttribute("loan") Loan product, BindingResult result) {
 		Assert.notNull(product, "product must be provided.");
 		for (ConstraintViolation<Loan> constraint : validator.validate(product)) {
-			result.rejectValue(constraint.getPropertyPath(), null, constraint.getMessage());
+			result.rejectValue(constraint.getPropertyPath().toString(), "", constraint.getMessage());
 		}
 		if (result.hasErrors())
 			return "product/update";
